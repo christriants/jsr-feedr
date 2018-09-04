@@ -4,7 +4,7 @@
     <head>
       <meta charset="utf-8">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
-      <title>Feedr @ GA</title>
+      <title>Watch our streams</title>
       <link rel="stylesheet" href="styles/normalize.css" media="screen" charset="utf-8">
       <link rel="stylesheet" href="styles/html5bp.css" media="screen" charset="utf-8">
       <link rel="stylesheet" href="styles/style.css" media="screen" charset="utf-8">
@@ -20,14 +20,13 @@
 
         <header>
           <section class="container">
-            <a href="#"><h1>Feedr</h1></a>
+            <a href="#"><h1>Streams!</h1></a>
             <nav>
               <ul>
-                <li><a href="#">News Source: <span>Source Name</span></a>
+                <li><a href="#">Livestreams: <span>Events</span></a>
                   <ul>
-                      <li><a href="#">Source 1</a></li>
-                      <li><a href="#">Source 2</a></li>
-                      <li><a href="#">Source 3</a></li>
+                      <li><a href="#">Main Feed</a></li>
+                      <li><a href="#">Other Streams</a></li>
                   </ul>
                 </li>
               </ul>
@@ -52,61 +51,70 @@
         <section id="main" class="container">
           <article class="article">
             <section class="featuredImage">
-              <img src="images/article_placeholder_1.jpg" alt="" />
+              <img src="" id="sports-image" />
             </section>
             <section class="articleContent">
-                <a href="#"><h3>Test article title</h3></a>
-                <h6>Lifestyle</h6>
+                <a href="#"><h3 id="sports-content"></h3></a>
+                <h6 id="sports-desc"></h6>
             </section>
-            <section class="impressions">
-              526
+            <section id="impressions-sports">
+              <!-- 526 -->
             </section>
             <div class="clearfix"></div>
           </article>
           <article class="article">
             <section class="featuredImage">
-              <img src="images/article_placeholder_2.jpg" alt="" />
+              <img src="" id = "news-image" />
             </section>
             <section class="articleContent">
-                <a href="#"><h3>Test article title</h3></a>
-                <h6>Lifestyle</h6>
+                <a href="#"><h3 id="news-content"></h3></a>
+                <h6 id="news-desc"></h6>
             </section>
-            <section class="impressions">
-              526
+            <section id="impressions-news">
+              <!-- 0 -->
             </section>
             <div class="clearfix"></div>
           </article>
           <article class="article">
             <section class="featuredImage">
-              <img src="images/article_placeholder_2.jpg" alt="" />
+              <img src="" id="biz-image" />
             </section>
             <section class="articleContent">
-                <a href="#"><h3>Test article title</h3></a>
-                <h6>Lifestyle</h6>
+                <a href="#"><h3 id="business-content"></h3></a>
+                <h6 id="biz-desc"></h6>
             </section>
-            <section class="impressions">
-              526
+            <section id="impressions-biz">
+              <!-- 526 -->
             </section>
             <div class="clearfix"></div>
           </article>
           <article class="article">
             <section class="featuredImage">
-              <img src="images/article_placeholder_1.jpg" alt="" />
+              <img src="" id="music-image" />
             </section>
             <section class="articleContent">
-                <a href="#"><h3>Test article title</h3></a>
-                <h6>Lifestyle</h6>
+                <a href="#"><h3 id="music-content"></h3></a>
+                <h6 id="music-desc"></h6>
             </section>
-            <section class="impressions">
-              526
+            <section id="impressions-music">
+              <!-- 526 -->
             </section>
             <div class="clearfix"></div>
           </article>
         </section>
 
+        <script>
+          // var test = document.getElementById("test");
+          // test.innerHTML = 'hello';
+
+          </script>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
-        <script src="js/app.js"></script>
+        <!-- <script data-main="app.js" src="require.js"></script> -->
+        <!-- <script data-main="auth.js" src="require.js"></script> -->
+        <script src="js/bundle.js"></script>
+        <!-- <script src="js/app.js"></script> -->
 
     </body>
 </html>

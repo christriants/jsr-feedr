@@ -59,7 +59,7 @@
 
 /* Header styles */
 header {
-  background-color: #FE052C;
+  background-color: rgb(0, 0, 0);
   position: fixed;
   top: 0;
   left: 0;
@@ -227,7 +227,34 @@ nav ul ul li {
   color: #666;
 }
 
-.article .impressions {
+.article #impressions-sports {
+  width: 15%;
+  float: right;
+  font-size: 30px;
+  margin-top: 15px;
+  text-align: right;
+  color: #097FB2;
+}
+
+.article #impressions-news {
+  width: 15%;
+  float: right;
+  font-size: 30px;
+  margin-top: 15px;
+  text-align: right;
+  color: #097FB2;
+}
+
+.article #impressions-biz {
+  width: 15%;
+  float: right;
+  font-size: 30px;
+  margin-top: 15px;
+  text-align: right;
+  color: #097FB2;
+}
+
+.article #impressions-music {
   width: 15%;
   float: right;
   font-size: 30px;
