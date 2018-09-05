@@ -2,11 +2,24 @@
 
 ### Overview
 
-The web is an ever growing medium and it is getting more and more difficult to filter useful information. In our journey to writing beautiful JavaScript, we have come and will come across a great many reference points that will guide our learning. This is where personal feeds come in very useful. Online feeds are like to-do lists in that they can be infinitely personalized and there is not one solution that works for everybody.
+PLEASE VIEW ON SAFARI, AND DISABLE CORS-ORIGIN RESTRICTIONS!!!
 
-For our Unit 2 project we will build __Feedr__, a personalized feed reader. Our feed reader will pull feeds from our favorite blogs. The user will be able to filter between publications through the dropdown on the header menu. Clicking/tapping on one of the articles will load a pop up with more information. The user from that point will be able to either dismiss the additional information or go to the referenced article.
+This is my single-page app for displaying Livestream events. This will allow users to switch between upcoming events and past events, and watch streams/video directly on this page.
 
-This will be our first single page app. All of our application views will be contained in the provided [index.html](index.html) file. Our task, after we pull from the respective feed APIs, will be to toggle the appropriate classes and content for the provided site architecture.
+The app.js script had to be run through Browserify to allow 'require' to work on browsers. Please ignore the 12,000 lines of code that are not relevant to my script. 
+
+Lines 4-296 are mine.
+
+
+This app:
+-Generates a token using a Livestream Public API Key.
+-Passes the token, clientID and timestamp as auth parameters.
+-Calls upcoming events and past events for my Livestream account.
+-Pulls JSON data for eventName, descriptions, logos, viewerCount, tags.
+-Plugs JSON data into various HTML fields
+-Results will switch from upcoming events to past events, depending on href tag. 
+
+Unfortunately, I haven't gotten search functionality to work yet, but I would like to implement searching by tags.
 
 ---
 
