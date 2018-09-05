@@ -148,6 +148,8 @@ async function clickPopup () {
     popUp.classList.remove("loader")
     popUpHeader.innerHTML = upcomingEvents.eventName.sportsName
     popUpParagraph.innerHTML = embeds.sports
+    document.getElementById("livestream").href = "https://livestream.com/accounts/12963240/events/8350228"
+
   })
 
   newsHeader.addEventListener("click", function(event) {
@@ -156,14 +158,16 @@ async function clickPopup () {
     popUp.classList.remove("loader")
     popUpHeader.innerHTML = upcomingEvents.eventName.newsName
     popUpParagraph.innerHTML = embeds.news
+    document.getElementById("livestream").href = "https://livestream.com/accounts/12963240/events/8353376"
 })
 
   businessHeader.addEventListener("click", function(event) {
     event.preventDefault();
     popUp.classList.remove("hidden")
     popUp.classList.remove("loader")
-    popUpHeader.innerHTML = upcomingEvents.eventName.businessHeader
+    popUpHeader.innerHTML = upcomingEvents.eventName.businessName
     popUpParagraph.innerHTML = embeds.business
+    document.getElementById("livestream").href = "https://livestream.com/accounts/12963240/events/8353379"
 })
 
   musicHeader.addEventListener("click", function(event) {
@@ -172,16 +176,18 @@ async function clickPopup () {
     popUp.classList.remove("loader")
     popUpHeader.innerHTML = upcomingEvents.eventName.musicName
     popUpParagraph.innerHTML = embeds.music
+    document.getElementById("livestream").href = "https://livestream.com/accounts/12963240/events/8353380s"
+
   })
 }
 
 clickPopup()
 
 function closePopUp () {
-  const x = document.getElementById("x");
-  x.addEventListener("click", function(event) {
+  const popUp = document.getElementById("popUp");
+  popUp.addEventListener("click", function(event) {
     event.preventDefault()
-    x.close() //fix this
+    // popUp.classList.add("hidden")
   }
 )}
 
