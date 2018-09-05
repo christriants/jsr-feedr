@@ -20,13 +20,6 @@ function generateToken(scope, timestamp) {
 
 var apiToken = generateToken('readonly', timestamp);
 
-const embeds = {
-  sports: `<iframe id="ls_embed_1536121571" src="https://livestream.com/accounts/12963240/events/8350228/player?width=640&height=360&enableInfoAndActivity=true&defaultDrawer=&autoPlay=true&mute=false" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen> </iframe><script type="text/javascript" data-embed_id="ls_embed_1536121571" src="https://livestream.com/assets/plugins/referrer_tracking.js"></script>`,
-  news:`<iframe id="ls_embed_1536121631" src="https://livestream.com/accounts/12963240/events/8353376/player?width=640&height=360&enableInfoAndActivity=true&defaultDrawer=&autoPlay=true&mute=false" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen> </iframe><script type="text/javascript" data-embed_id="ls_embed_1536121631" src="https://livestream.com/assets/plugins/referrer_tracking.js"></script>`,
-  business:`<iframe id="ls_embed_1536121657" src="https://livestream.com/accounts/12963240/events/8353379/player?width=640&height=360&enableInfoAndActivity=true&defaultDrawer=&autoPlay=true&mute=false" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen> </iframe><script type="text/javascript" data-embed_id="ls_embed_1536121657" src="https://livestream.com/assets/plugins/referrer_tracking.js"></script>`,
-  music: `<iframe id="ls_embed_1536121683" src="https://livestream.com/accounts/12963240/events/8353380/player?width=640&height=360&enableInfoAndActivity=true&defaultDrawer=&autoPlay=true&mute=false" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen> </iframe><script type="text/javascript" data-embed_id="ls_embed_1536121683" src="https://livestream.com/assets/plugins/referrer_tracking.js"></script>`
-}
-
 async function getUpcomingEvents() {
   const getReq = {
     headers: {
@@ -40,41 +33,55 @@ async function getUpcomingEvents() {
   console.log(json)
 
   const logos = {
-    sportsLogo: json.data[0].logo.url,
-    newsLogo: json.data[1].logo.url,
-    businessLogo: json.data[2].logo.url,
-    musicLogo: json.data[3].logo.url
+    logo1: json.data[0].logo.url,
+    logo2: json.data[1].logo.url,
+    logo3: json.data[2].logo.url,
+    logo4: json.data[3].logo.url
   }
 
   const descriptions = {
-    sportsDescription: json.data[0].description,
-    newsDescription: json.data[1].description,
-    businessDescription: json.data[2].description,
-    musicDescription: json.data[3].description
+    description1: json.data[0].description,
+    description2: json.data[1].description,
+    description3: json.data[2].description,
+    description4: json.data[3].description
   }
 
   const eventName = {
-    sportsName: json.data[0].fullName,
-    newsName: json.data[1].fullName,
-    businessName: json.data[2].fullName,
-    musicName: json.data[3].fullName
+    name1: json.data[0].fullName,
+    name2: json.data[1].fullName,
+    name3: json.data[2].fullName,
+    name4: json.data[3].fullName
   }
 
   const tags = {
-    sportsTags: json.data[0].tags,
-    newsTags: json.data[1].tags,
-    businessTags: json.data[2].tags,
-    nusicTags: json.data[3].tags
+    tags1: json.data[0].tags,
+    tags2: json.data[1].tags,
+    tags3: json.data[2].tags,
+    tags4: json.data[3].tags
   }
 
   const viewerCount = {
-    sportsViews: json.data[0].viewerCount,
-    newsViews: json.data[1].viewerCount,
-    businessViews: json.data[2].viewerCount,
-    musicViews: json.data[3].viewerCount
+    views1: json.data[0].viewerCount,
+    views2: json.data[1].viewerCount,
+    views3: json.data[2].viewerCount,
+    views4: json.data[3].viewerCount
   }
 
-  return { logos, descriptions, eventName, tags, viewerCount}
+  const url = {
+    url1: "https://livestream.com/accounts/12963240/events/8350228",
+    url2: "https://livestream.com/accounts/12963240/events/8353376",
+    url3: "https://livestream.com/accounts/12963240/events/8353379",
+    url4: "https://livestream.com/accounts/12963240/events/8353380"
+  }
+
+  const embed = {
+    embed1: `<iframe id="ls_embed_1536121571" src="https://livestream.com/accounts/12963240/events/8350228/player?width=640&height=360&enableInfoAndActivity=true&defaultDrawer=&autoPlay=true&mute=false" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen> </iframe><script type="text/javascript" data-embed_id="ls_embed_1536121571" src="https://livestream.com/assets/plugins/referrer_tracking.js"></script>`,
+    embed2: `<iframe id="ls_embed_1536121631" src="https://livestream.com/accounts/12963240/events/8353376/player?width=640&height=360&enableInfoAndActivity=true&defaultDrawer=&autoPlay=true&mute=false" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen> </iframe><script type="text/javascript" data-embed_id="ls_embed_1536121631" src="https://livestream.com/assets/plugins/referrer_tracking.js"></script>`,
+    embed3: `<iframe id="ls_embed_1536121657" src="https://livestream.com/accounts/12963240/events/8353379/player?width=640&height=360&enableInfoAndActivity=true&defaultDrawer=&autoPlay=true&mute=false" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen> </iframe><script type="text/javascript" data-embed_id="ls_embed_1536121657" src="https://livestream.com/assets/plugins/referrer_tracking.js"></script>`,
+    embed4: `<iframe id="ls_embed_1536121683" src="https://livestream.com/accounts/12963240/events/8353380/player?width=640&height=360&enableInfoAndActivity=true&defaultDrawer=&autoPlay=true&mute=false" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen> </iframe><script type="text/javascript" data-embed_id="ls_embed_1536121683" src="https://livestream.com/assets/plugins/referrer_tracking.js"></script>`
+  }
+
+  return { logos, descriptions, eventName, tags, viewerCount, url, embed}
 };
 
 getUpcomingEvents()
@@ -92,41 +99,55 @@ async function getPastEvents() {
   console.log(json)
 
   const logos = {
-    sportsLogo: json.data[0].logo.url,
-    newsLogo: json.data[1].logo.url,
-    businessLogo: json.data[2].logo.url,
-    musicLogo: json.data[3].logo.url
+    logo1: json.data[0].logo.url,
+    logo2: json.data[1].logo.url,
+    logo3: json.data[2].logo.url,
+    logo4: json.data[3].logo.url
   }
 
   const descriptions = {
-    sportsDescription: json.data[0].description,
-    newsDescription: json.data[1].description,
-    businessDescription: json.data[2].description,
-    musicDescription: json.data[3].description
+    description1: json.data[0].description,
+    description2: json.data[1].description,
+    description3: json.data[2].description,
+    description4: json.data[3].description
   }
 
   const eventName = {
-    sportsName: json.data[0].fullName,
-    newsName: json.data[1].fullName,
-    businessName: json.data[2].fullName,
-    musicName: json.data[3].fullName
+    name1: json.data[0].fullName,
+    name2: json.data[1].fullName,
+    name3: json.data[2].fullName,
+    name4: json.data[3].fullName
   }
 
   const tags = {
-    sportsTags: json.data[0].tags,
-    newsTags: json.data[1].tags,
-    businessTags: json.data[2].tags,
-    nusicTags: json.data[3].tags
+    tags1: json.data[0].tags,
+    tags2: json.data[1].tags,
+    tags3: json.data[2].tags,
+    tags4: json.data[3].tags
   }
 
   const viewerCount = {
-    sportsViews: json.data[0].viewerCount,
-    newsViews: json.data[1].viewerCount,
-    businessViews: json.data[2].viewerCount,
-    musicViews: json.data[3].viewerCount
+    views1: json.data[0].viewerCount,
+    views2: json.data[1].viewerCount,
+    views3: json.data[2].viewerCount,
+    views4: json.data[3].viewerCount
   }
 
-  return { logos, descriptions, eventName, tags, viewerCount}
+  const url = {
+    url1: "https://livestream.com/accounts/12963240/events/8359098",
+    url2: "https://livestream.com/accounts/12963240/events/8359096",
+    url3: "https://livestream.com/accounts/12963240/events/8238448",
+    url4: "https://livestream.com/accounts/12963240/events/5037587"
+  }
+
+  const embed = {
+    embed1: `<iframe id="ls_embed_1536187730" src="https://livestream.com/accounts/12963240/events/8359098/player?width=640&height=360&enableInfoAndActivity=true&defaultDrawer=&autoPlay=true&mute=false" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen> </iframe><script type="text/javascript" data-embed_id="ls_embed_1536187730" src="https://livestream.com/assets/plugins/referrer_tracking.js"></script>`,
+    embed2: `<iframe id="ls_embed_1536187786" src="https://livestream.com/accounts/12963240/events/8359096/player?width=640&height=360&enableInfoAndActivity=true&defaultDrawer=&autoPlay=true&mute=false" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen> </iframe><script type="text/javascript" data-embed_id="ls_embed_1536187786" src="https://livestream.com/assets/plugins/referrer_tracking.js"></script>`,
+    embed3: `<iframe id="ls_embed_1536187811" src="https://livestream.com/accounts/12963240/events/8238448/player?width=640&height=360&enableInfoAndActivity=true&defaultDrawer=&autoPlay=true&mute=false" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen> </iframe><script type="text/javascript" data-embed_id="ls_embed_1536187811" src="https://livestream.com/assets/plugins/referrer_tracking.js"></script>`,
+    embed4: `<iframe id="ls_embed_1536187841" src="https://livestream.com/accounts/12963240/events/5037587/player?width=640&height=360&enableInfoAndActivity=true&defaultDrawer=&autoPlay=true&mute=false" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen> </iframe><script type="text/javascript" data-embed_id="ls_embed_1536187841" src="https://livestream.com/assets/plugins/referrer_tracking.js"></script>`
+  }
+
+  return { logos, descriptions, eventName, tags, viewerCount, url, embed}
 };
 
 getPastEvents()
@@ -168,36 +189,35 @@ refreshPage()
 
 
 function changeTitles (events) {
-  document.getElementById("sports-content").innerHTML = events.eventName.sportsName
-  document.getElementById("news-content").innerHTML = events.eventName.newsName
-  document.getElementById("business-content").innerHTML = events.eventName.businessName
-  document.getElementById("music-content").innerHTML = events.eventName.musicName
+  document.getElementById("sports-content").innerHTML = events.eventName.name1
+  document.getElementById("news-content").innerHTML = events.eventName.name2
+  document.getElementById("business-content").innerHTML = events.eventName.name3
+  document.getElementById("music-content").innerHTML = events.eventName.name4
 }
 
-async function changeDescriptions (events) {
-  document.getElementById("sports-desc").innerHTML = events.descriptions.sportsDescription
-  document.getElementById("news-desc").innerHTML = events.descriptions.newsDescription
-  document.getElementById("biz-desc").innerHTML = events.descriptions.businessDescription
-  document.getElementById("music-desc").innerHTML = events.descriptions.musicDescription
+function changeDescriptions (events) {
+  document.getElementById("sports-desc").innerHTML = events.descriptions.description1
+  document.getElementById("news-desc").innerHTML = events.descriptions.description2
+  document.getElementById("biz-desc").innerHTML = events.descriptions.description3
+  document.getElementById("music-desc").innerHTML = events.descriptions.description4
 }
 
-async function changeImages (events) {
-  document.getElementById("sports-image").src = events.logos.sportsLogo
-  document.getElementById("news-image").src = events.logos.newsLogo
-  document.getElementById("biz-image").src = events.logos.businessLogo
-  document.getElementById("music-image").src = events.logos.musicLogo
+function changeImages (events) {
+  document.getElementById("sports-image").src = events.logos.logo1
+  document.getElementById("news-image").src = events.logos.logo2
+  document.getElementById("biz-image").src = events.logos.logo3
+  document.getElementById("music-image").src = events.logos.logo4
 }
 
-
-async function totalViews (events) {
-  document.getElementById("impressions-sports").innerHTML = events.viewerCount.sportsViews
-  document.getElementById("impressions-news").innerHTML = events.viewerCount.newsViews
-  document.getElementById("impressions-biz").innerHTML = events.viewerCount.businessViews
-  document.getElementById("impressions-music").innerHTML = events.viewerCount.musicViews
+function totalViews (events) {
+  document.getElementById("impressions-sports").innerHTML = events.viewerCount.views1
+  document.getElementById("impressions-news").innerHTML = events.viewerCount.views2
+  document.getElementById("impressions-biz").innerHTML = events.viewerCount.views3
+  document.getElementById("impressions-music").innerHTML = events.viewerCount.views4
 
 }
 
-async function clickPopup () {
+function clickPopup () {
   const popUp = document.getElementById("popUp")
   const popUpHeader = document.getElementById("h-container")
   const popUpParagraph = document.getElementById("p-container")
@@ -210,9 +230,9 @@ async function clickPopup () {
     event.preventDefault();
     popUp.classList.remove("hidden")
     popUp.classList.remove("loader")
-    popUpHeader.innerHTML = events.eventName.sportsName
-    popUpParagraph.innerHTML = embeds.sports
-    document.getElementById("livestream").href = "https://livestream.com/accounts/12963240/events/8350228"
+    popUpHeader.innerHTML = events.eventName.name1
+    popUpParagraph.innerHTML = events.embed.embed1
+    document.getElementById("livestream").href = events.url.url1
 
   })
 
@@ -220,35 +240,32 @@ async function clickPopup () {
     event.preventDefault();
     popUp.classList.remove("hidden")
     popUp.classList.remove("loader")
-    popUpHeader.innerHTML = events.eventName.newsName
-    popUpParagraph.innerHTML = embeds.news
-    document.getElementById("livestream").href = "https://livestream.com/accounts/12963240/events/8353376"
+    popUpHeader.innerHTML = events.eventName.name2
+    popUpParagraph.innerHTML = events.embed.embed2
+    document.getElementById("livestream").href = events.url.url2
 })
 
   businessHeader.addEventListener("click", function(event) {
     event.preventDefault();
     popUp.classList.remove("hidden")
     popUp.classList.remove("loader")
-    popUpHeader.innerHTML = events.eventName.businessName
-    popUpParagraph.innerHTML = embeds.business
-    document.getElementById("livestream").href = "https://livestream.com/accounts/12963240/events/8353379"
+    popUpHeader.innerHTML = events.eventName.name3
+    popUpParagraph.innerHTML = events.embed.embed3
+    document.getElementById("livestream").href = events.url.url3
 })
 
   musicHeader.addEventListener("click", function(event) {
     event.preventDefault();
     popUp.classList.remove("hidden")
     popUp.classList.remove("loader")
-    popUpHeader.innerHTML = events.eventName.musicName
-    popUpParagraph.innerHTML = embeds.music
-    document.getElementById("livestream").href = "https://livestream.com/accounts/12963240/events/8353380"
+    popUpHeader.innerHTML = events.eventName.name4
+    popUpParagraph.innerHTML = events.embed.embed4
+    document.getElementById("livestream").href = events.url.url4
 
   })
 }
 
 clickPopup()
-
-
-
 
 function closePopUp () {
   const popUp = document.getElementById("popUp")
@@ -261,7 +278,7 @@ function closePopUp () {
 
 closePopUp()
 
-async function search () {
+function search () {
   const search = document.getElementById("search")
   search.addEventListener("click", function (event){
     event.preventDefault()
@@ -278,23 +295,7 @@ document.getElementById("home").addEventListener("click", refreshPage);
 document.getElementById("past").addEventListener("click", refreshPage);
 document.getElementById("upcoming").addEventListener("click", refreshPage);
 
-// function clickPopup (){
-//   $( "#sports-content" ).click(function() {
-//     document.getElementById("popUp");
-//   });
-//   $( "#news-content" ).click(function() {
-//     alert( "Handler for .click() called." );
-//   });
-//   $( "#business-content" ).click(function() {
-//     alert( "Handler for .click() called." );
-//   });
-//   $( "#music-content" ).click(function() {
-//     alert( "Handler for .click() called." );
-//   });
-// }
-
-
-
+// MY CODE STOPS HERE
 
 },{"crypto":57,"node-fetch":2}],2:[function(require,module,exports){
 "use strict";
