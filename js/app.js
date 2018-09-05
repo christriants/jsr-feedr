@@ -79,101 +79,125 @@ async function getUpcomingEvents() {
 
 getUpcomingEvents()
 
-// async function getPastEvents() {
-//   const getReq = {
-//     headers: {
-//       'Content-Type': 'application/json'
-//     }
-//   }
+async function getPastEvents() {
+  const getReq = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
 
-//   const pastEvents = `https://livestreamapis.com/v3/accounts/12963240/past_events?clientId=${clientId}&token=${apiToken}&timestamp=${timestamp}`
-//   const res = await fetch(pastEvents, getReq);
-//   const json = await res.json()
-//   console.log(json)
+  const pastEvents = `https://livestreamapis.com/v3/accounts/12963240/past_events?clientId=${clientId}&token=${apiToken}&timestamp=${timestamp}`
+  const res = await fetch(pastEvents, getReq);
+  const json = await res.json()
+  console.log(json)
 
-//   // const logos = {
-//   //   pastLogo1: json.data[0].logo.url,
-//   //   pastLogo2: json.data[1].logo.url,
-//   //   pastLogo3: json.data[2].logo.url,
-//   //   pastLogo4: json.data[3].logo.url
-//   // }
+  const logos = {
+    sportsLogo: json.data[0].logo.url,
+    newsLogo: json.data[1].logo.url,
+    businessLogo: json.data[2].logo.url,
+    musicLogo: json.data[3].logo.url
+  }
 
-//   const descriptions = {
-//     pastDescription1: json.data[0].description,
-//     pastDescription2: json.data[1].description,
-//     pastDescription3: json.data[2].description,
-//     pastDescription4: json.data[3].description
-//   }
+  const descriptions = {
+    sportsDescription: json.data[0].description,
+    newsDescription: json.data[1].description,
+    businessDescription: json.data[2].description,
+    musicDescription: json.data[3].description
+  }
 
-//   const eventName = {
-//     pastName1: json.data[0].fullName,
-//     pastName2: json.data[1].fullName,
-//     pastName3: json.data[2].fullName,
-//     pastName4: json.data[3].fullName
-//   }
+  const eventName = {
+    sportsName: json.data[0].fullName,
+    newsName: json.data[1].fullName,
+    businessName: json.data[2].fullName,
+    musicName: json.data[3].fullName
+  }
 
-//   const tags = {
-//     pastTags1: json.data[0].tags,
-//     pastTags2: json.data[1].tags,
-//     pastTags3: json.data[2].tags,
-//     pastTags4: json.data[3].tags
-//   }
+  const tags = {
+    sportsTags: json.data[0].tags,
+    newsTags: json.data[1].tags,
+    businessTags: json.data[2].tags,
+    nusicTags: json.data[3].tags
+  }
 
-//   const viewerCount = {
-//     pastViews1: json.data[0].viewerCount,
-//     pastViews2: json.data[1].viewerCount,
-//     pastViews3: json.data[2].viewerCount,
-//     pastViews4: json.data[3].viewerCount
-//   }
+  const viewerCount = {
+    sportsViews: json.data[0].viewerCount,
+    newsViews: json.data[1].viewerCount,
+    businessViews: json.data[2].viewerCount,
+    musicViews: json.data[3].viewerCount
+  }
 
-//   return { logos, descriptions, eventName, tags, viewerCount}
-// };
+  return { logos, descriptions, eventName, tags, viewerCount}
+};
 
-// getPastEvents()
+getPastEvents()
 
-async function changeTitles () {
-  const upcomingEvents = await getUpcomingEvents()
-  document.getElementById("sports-content").innerHTML = upcomingEvents.eventName.sportsName
-  document.getElementById("news-content").innerHTML = upcomingEvents.eventName.newsName
-  document.getElementById("business-content").innerHTML = upcomingEvents.eventName.businessName
-  document.getElementById("music-content").innerHTML = upcomingEvents.eventName.musicName
+let upcoming;
+let past;
+let events
+
+function refreshPage () {
+  Promise.all([
+    getUpcomingEvents(),
+    getPastEvents(),
+  ]).then((results) => {
+    upcoming = results[0];
+    past = results[1];
+    console.log(past)
+  
+    const url = window.location.href // TODO make read hashtags from url: '' | '#' | '##'
+    const splitArr = url.split('#')
+    const location = (splitArr.length > 1) ? splitArr[1] : '';
+    console.log(location)
+  
+  
+    if (location === '') {
+      events = upcoming;
+    } else if (location === 'past') {
+      events = past
+    } else {
+      events = upcoming;
+    }
+  
+    changeTitles(events)
+    changeDescriptions(events)
+    changeImages(events)
+    totalViews(events)
+  });
+}
+refreshPage()
+
+
+function changeTitles (events) {
+  document.getElementById("sports-content").innerHTML = events.eventName.sportsName
+  document.getElementById("news-content").innerHTML = events.eventName.newsName
+  document.getElementById("business-content").innerHTML = events.eventName.businessName
+  document.getElementById("music-content").innerHTML = events.eventName.musicName
 }
 
-changeTitles()
-
-async function changeDescriptions () {
-  const upcomingEvents = await getUpcomingEvents()
-  document.getElementById("sports-desc").innerHTML = upcomingEvents.descriptions.sportsDescription
-  document.getElementById("news-desc").innerHTML = upcomingEvents.descriptions.newsDescription
-  document.getElementById("biz-desc").innerHTML = upcomingEvents.descriptions.businessDescription
-  document.getElementById("music-desc").innerHTML = upcomingEvents.descriptions.musicDescription
+async function changeDescriptions (events) {
+  document.getElementById("sports-desc").innerHTML = events.descriptions.sportsDescription
+  document.getElementById("news-desc").innerHTML = events.descriptions.newsDescription
+  document.getElementById("biz-desc").innerHTML = events.descriptions.businessDescription
+  document.getElementById("music-desc").innerHTML = events.descriptions.musicDescription
 }
 
-changeDescriptions()
-
-async function changeImages () {
-  const upcomingEvents = await getUpcomingEvents()
-  document.getElementById("sports-image").src = upcomingEvents.logos.sportsLogo
-  document.getElementById("news-image").src = upcomingEvents.logos.newsLogo
-  document.getElementById("biz-image").src = upcomingEvents.logos.businessLogo
-  document.getElementById("music-image").src = upcomingEvents.logos.musicLogo
+async function changeImages (events) {
+  document.getElementById("sports-image").src = events.logos.sportsLogo
+  document.getElementById("news-image").src = events.logos.newsLogo
+  document.getElementById("biz-image").src = events.logos.businessLogo
+  document.getElementById("music-image").src = events.logos.musicLogo
 }
 
-changeImages()
 
-async function totalViews () {
-  const upcomingEvents = await getUpcomingEvents()
-  document.getElementById("impressions-sports").innerHTML = upcomingEvents.viewerCount.sportsViews
-  document.getElementById("impressions-news").innerHTML = upcomingEvents.viewerCount.newsViews
-  document.getElementById("impressions-biz").innerHTML = upcomingEvents.viewerCount.businessViews
-  document.getElementById("impressions-music").innerHTML = upcomingEvents.viewerCount.musicViews
+async function totalViews (events) {
+  document.getElementById("impressions-sports").innerHTML = events.viewerCount.sportsViews
+  document.getElementById("impressions-news").innerHTML = events.viewerCount.newsViews
+  document.getElementById("impressions-biz").innerHTML = events.viewerCount.businessViews
+  document.getElementById("impressions-music").innerHTML = events.viewerCount.musicViews
 
 }
-
-totalViews()
 
 async function clickPopup () {
-  const upcomingEvents = await getUpcomingEvents()
   const popUp = document.getElementById("popUp")
   const popUpHeader = document.getElementById("h-container")
   const popUpParagraph = document.getElementById("p-container")
@@ -186,7 +210,7 @@ async function clickPopup () {
     event.preventDefault();
     popUp.classList.remove("hidden")
     popUp.classList.remove("loader")
-    popUpHeader.innerHTML = upcomingEvents.eventName.sportsName
+    popUpHeader.innerHTML = events.eventName.sportsName
     popUpParagraph.innerHTML = embeds.sports
     document.getElementById("livestream").href = "https://livestream.com/accounts/12963240/events/8350228"
 
@@ -196,7 +220,7 @@ async function clickPopup () {
     event.preventDefault();
     popUp.classList.remove("hidden")
     popUp.classList.remove("loader")
-    popUpHeader.innerHTML = upcomingEvents.eventName.newsName
+    popUpHeader.innerHTML = events.eventName.newsName
     popUpParagraph.innerHTML = embeds.news
     document.getElementById("livestream").href = "https://livestream.com/accounts/12963240/events/8353376"
 })
@@ -205,7 +229,7 @@ async function clickPopup () {
     event.preventDefault();
     popUp.classList.remove("hidden")
     popUp.classList.remove("loader")
-    popUpHeader.innerHTML = upcomingEvents.eventName.businessName
+    popUpHeader.innerHTML = events.eventName.businessName
     popUpParagraph.innerHTML = embeds.business
     document.getElementById("livestream").href = "https://livestream.com/accounts/12963240/events/8353379"
 })
@@ -214,7 +238,7 @@ async function clickPopup () {
     event.preventDefault();
     popUp.classList.remove("hidden")
     popUp.classList.remove("loader")
-    popUpHeader.innerHTML = upcomingEvents.eventName.musicName
+    popUpHeader.innerHTML = events.eventName.musicName
     popUpParagraph.innerHTML = embeds.music
     document.getElementById("livestream").href = "https://livestream.com/accounts/12963240/events/8353380"
 
@@ -222,6 +246,8 @@ async function clickPopup () {
 }
 
 clickPopup()
+
+
 
 
 function closePopUp () {
@@ -247,6 +273,10 @@ async function search () {
 }
 
 search()
+
+document.getElementById("home").addEventListener("click", refreshPage);
+document.getElementById("past").addEventListener("click", refreshPage);
+document.getElementById("upcoming").addEventListener("click", refreshPage);
 
 // function clickPopup (){
 //   $( "#sports-content" ).click(function() {
