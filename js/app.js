@@ -176,22 +176,34 @@ async function clickPopup () {
     popUp.classList.remove("loader")
     popUpHeader.innerHTML = upcomingEvents.eventName.musicName
     popUpParagraph.innerHTML = embeds.music
-    document.getElementById("livestream").href = "https://livestream.com/accounts/12963240/events/8353380s"
+    document.getElementById("livestream").href = "https://livestream.com/accounts/12963240/events/8353380"
 
   })
 }
 
 clickPopup()
 
+
 function closePopUp () {
-  const popUp = document.getElementById("popUp");
-  popUp.addEventListener("click", function(event) {
+  const popUp = document.getElementById("popUp")
+  const x = document.getElementById("x")
+  x.addEventListener("click", function(event) {
     event.preventDefault()
-    // popUp.classList.add("hidden")
+    popUp.classList.add("hidden")
   }
 )}
 
 closePopUp()
+
+async function search () {
+  const getUpcomingEvents = await getUpcomingEvents()
+  const search = document.getElementById("search")
+  search.addEventListener("click", function (event){
+    event.preventDefault()
+    search.classList.add("active")
+  })
+
+}
 
 // function clickPopup (){
 //   $( "#sports-content" ).click(function() {
