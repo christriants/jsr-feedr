@@ -79,57 +79,57 @@ async function getUpcomingEvents() {
 
 getUpcomingEvents()
 
-async function getPastEvents() {
-  const getReq = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }
+// async function getPastEvents() {
+//   const getReq = {
+//     headers: {
+//       'Content-Type': 'application/json'
+//     }
+//   }
 
-  const pastEvents = `https://livestreamapis.com/v3/accounts/12963240/past_events?clientId=${clientId}&token=${apiToken}&timestamp=${timestamp}`
-  const res = await fetch(pastEvents, getReq);
-  const json = await res.json()
-  console.log(json)
+//   const pastEvents = `https://livestreamapis.com/v3/accounts/12963240/past_events?clientId=${clientId}&token=${apiToken}&timestamp=${timestamp}`
+//   const res = await fetch(pastEvents, getReq);
+//   const json = await res.json()
+//   console.log(json)
 
-  const logos = {
-    sportsLogo: json.data[0].logo.url,
-    newsLogo: json.data[1].logo.url,
-    businessLogo: json.data[2].logo.url,
-    musicLogo: json.data[3].logo.url
-  }
+//   // const logos = {
+//   //   pastLogo1: json.data[0].logo.url,
+//   //   pastLogo2: json.data[1].logo.url,
+//   //   pastLogo3: json.data[2].logo.url,
+//   //   pastLogo4: json.data[3].logo.url
+//   // }
 
-  const descriptions = {
-    sportsDescription: json.data[0].description,
-    newsDescription: json.data[1].description,
-    businessDescription: json.data[2].description,
-    musicDescription: json.data[3].description
-  }
+//   const descriptions = {
+//     pastDescription1: json.data[0].description,
+//     pastDescription2: json.data[1].description,
+//     pastDescription3: json.data[2].description,
+//     pastDescription4: json.data[3].description
+//   }
 
-  const eventName = {
-    sportsName: json.data[0].fullName,
-    newsName: json.data[1].fullName,
-    businessName: json.data[2].fullName,
-    musicName: json.data[3].fullName
-  }
+//   const eventName = {
+//     pastName1: json.data[0].fullName,
+//     pastName2: json.data[1].fullName,
+//     pastName3: json.data[2].fullName,
+//     pastName4: json.data[3].fullName
+//   }
 
-  const tags = {
-    sportsTags: json.data[0].tags,
-    newsTags: json.data[1].tags,
-    businessTags: json.data[2].tags,
-    nusicTags: json.data[3].tags
-  }
+//   const tags = {
+//     pastTags1: json.data[0].tags,
+//     pastTags2: json.data[1].tags,
+//     pastTags3: json.data[2].tags,
+//     pastTags4: json.data[3].tags
+//   }
 
-  const viewerCount = {
-    sportsViews: json.data[0].viewerCount,
-    newsViews: json.data[1].viewerCount,
-    businessViews: json.data[2].viewerCount,
-    musicViews: json.data[3].viewerCount
-  }
+//   const viewerCount = {
+//     pastViews1: json.data[0].viewerCount,
+//     pastViews2: json.data[1].viewerCount,
+//     pastViews3: json.data[2].viewerCount,
+//     pastViews4: json.data[3].viewerCount
+//   }
 
-  return { logos, descriptions, eventName, tags, viewerCount}
-};
+//   return { logos, descriptions, eventName, tags, viewerCount}
+// };
 
-getPastEvents()
+// getPastEvents()
 
 async function changeTitles () {
   const upcomingEvents = await getUpcomingEvents()
@@ -151,7 +151,7 @@ async function changeDescriptions () {
 
 changeDescriptions()
 
-async function changeImages (img) {
+async function changeImages () {
   const upcomingEvents = await getUpcomingEvents()
   document.getElementById("sports-image").src = upcomingEvents.logos.sportsLogo
   document.getElementById("news-image").src = upcomingEvents.logos.newsLogo
@@ -236,14 +236,17 @@ function closePopUp () {
 closePopUp()
 
 async function search () {
-  const getUpcomingEvents = await getUpcomingEvents()
   const search = document.getElementById("search")
   search.addEventListener("click", function (event){
     event.preventDefault()
     search.classList.add("active")
+    search.addEventListener("click", function (event) {
+      search.classList.toggle("active") // how can I make this
+    })
   })
-
 }
+
+search()
 
 // function clickPopup (){
 //   $( "#sports-content" ).click(function() {
