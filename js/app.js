@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 
 const crypto = require('crypto');
 
-const API_SECRET = "";
+const API_SECRET = "HTuRddLgDjCZcnJdo0kvpYY9HOX9RCFA";
 const clientId = 8143;
 var timestamp = (new Date).getTime();
 
@@ -278,18 +278,22 @@ function closePopUp () {
 
 closePopUp()
 
-function search () {
+function searchButton () {
   const search = document.getElementById("search")
-  search.addEventListener("click", function (event){
+  const searchButton = document.getElementById("searchButton")
+  searchButton.addEventListener("click", function (event){
     event.preventDefault()
     search.classList.add("active")
-    search.addEventListener("click", function (event) {
-      search.classList.toggle("active") // how can I make this
+    searchButton.addEventListener("click", function () {
+      search.classList.toggle("active") 
     })
   })
 }
 
 search()
+
+
+
 
 document.getElementById("home").addEventListener("click", refreshPage);
 document.getElementById("past").addEventListener("click", refreshPage);
