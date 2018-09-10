@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 
 const crypto = require('crypto');
 
-const API_SECRET = "HTuRddLgDjCZcnJdo0kvpYY9HOX9RCFA";
+const API_SECRET = "";
 const clientId = 8143;
 var timestamp = (new Date).getTime();
 
